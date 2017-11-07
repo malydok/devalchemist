@@ -1,0 +1,196 @@
+.section-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background: var(--darkBrown);
+  height: 100vh;
+  width: 100%;
+
+  @nest .js & {
+    &::before {
+      @apply --fillParent;
+      z-index: 2;
+      content: '';
+      background-color: var(--darkBrown);
+      transition: opacity 1s;
+    }
+    &.is-loaded {
+      &::before {
+        opacity: 0;
+      }
+    }
+  }
+}
+.section-top__background {
+  @apply --fillParent;
+  z-index: 0;
+  background: url(images/alchemist-small.jpg) center no-repeat;
+  background-size: cover;
+
+  @media (--small) {
+    background-image: url(images/alchemist-medium.jpg);
+  }
+  @media (--large) {
+    background-image: url(images/alchemist.jpg);
+  }
+}
+.section-top__flame {
+  @apply --fillParent;
+  z-index: 2;
+  user-select: none;
+  background: url(images/flame.png) center no-repeat;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.section-top__canvas {
+  @apply --fillParent;
+
+  &.smoke {
+    z-index: 1;
+  }
+  &.lines {
+    z-index: 3;
+  }
+}
+.canvas-controls {
+  z-index: 10;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  color: var(--darkBrown);
+  line-height: 1;
+  opacity: 0;
+  transform: translate(10px, -10px);
+  transition: opacity .5s .5s, transform .5s .5s;
+
+  @nest .is-loaded & {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  & hr {
+    margin: .5em 0;
+    background-color: #999;
+  }
+}
+.canvas-controls__item {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 6px 5px;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  color: var(--darkBrown);
+  opacity: 0.7;
+  transition: opacity .5s;
+
+  &:focus .canvas-controls__icon {
+    box-shadow: 0 0 3px 3px var(--red);
+  }
+  &:hover,
+  &:focus {
+    opacity: 1;
+
+    & .canvas-controls__description {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+      transition: opacity .2s, transform .2s;
+    }
+  }
+}
+.canvas-controls__icon {
+  overflow: hidden;
+  display: block;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 50%;
+  background: var(--lightGray);
+}
+.canvas-controls__description {
+  position: absolute;
+  top: 100%;
+  right: 5px;
+  margin: 0;
+  padding: .5em .8em;
+  width: 160px;
+  border-radius: 5px;
+  background: var(--lightGray);
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.2;
+  box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.3);
+  border-top: 3px solid var(--red);
+  opacity: 0;
+  transform: scale(0.1);
+  transform-origin: top right;
+  transition: opacity .2s .1s, transform .2s .1s;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    right: 5px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 6px 10px;
+    border-color: transparent transparent var(--red) transparent;
+  }
+}
+
+.toggle-animation {
+  display: none;
+
+  @media (--medium) {
+    display: inline-block;
+  }
+
+  & .canvas-controls__icon {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      margin-top: -6px;
+      margin-left: -1.5px;
+      height: 12px;
+      width: 3px;
+      background-color: var(--darkBrown);
+      transition: transform .3s, background-color .3s;
+    }
+    &::before {
+      z-index: 2;
+      transform: translateX(-3px);
+    }
+    &::after {
+      z-index: 1;
+      transform: translateX(3px);
+    }
+  }
+  &.is-paused .canvas-controls__icon {
+    &::before {
+      transform: translateX(-7px) scale(3, 2);
+      background-color: var(--lightGray);
+    }
+    &::after {
+      transform: translateX(-3px) rotate(45deg) scaleX(4);
+    }
+  }
+
+  & .canvas-controls__description {
+    width: 150px;
+  }
+}

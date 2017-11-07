@@ -1,0 +1,17 @@
+@custom-media --small (min-width: 480px);
+@custom-media --medium (min-width: 768px);
+@custom-media --large (min-width: 1280px);
+
+:root {
+  --darkBrown: #27221C;
+  --lightGray: #C7C7BA;
+  --red: #A03030;
+
+  --fillParent: {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+}

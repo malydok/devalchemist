@@ -1,0 +1,6 @@
+@import 'variables.css';
+@import 'reset.css';
+@import 'general.css';
+@import 'sections/top.css';
+@import 'sections/works.css';
+@import 'sections/about.css';
