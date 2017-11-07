@@ -1,0 +1,50 @@
+.sections-wrap {
+  position: relative;
+  margin: 100vh 0 0;
+  max-width: 1300px;
+  background-color: color(var(--lightGray) a(95%));
+
+  @media (--medium) {
+    margin: 100vh 5% 0;
+  }
+  @media (--large) {
+    margin: 100vh 10% 0;
+  }
+}
+.section {
+  padding: 1em 5%;
+  font-size: 20px;
+  
+  @media (--medium) {
+    display: flex;
+    padding: 2em 2em;
+  }
+  @media (--large) {
+    padding: 3em 4em;
+  }
+
+  & p {
+    margin-bottom: 1em;
+  }
+}
+.section-heading {
+  margin-bottom: .1em;
+
+  @media (--medium) {
+    min-width: 210px;
+  }
+  @media (--large) {
+    min-width: 300px;
+  }
+}
+.section-title {
+  font-size: 35px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.section-subtitle {
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  opacity: 0.7;
+}

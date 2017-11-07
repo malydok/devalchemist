@@ -6,12 +6,4 @@
   --darkBrown: #27221C;
   --lightGray: #C7C7BA;
   --red: #A03030;
-
-  --fillParent: {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
 }

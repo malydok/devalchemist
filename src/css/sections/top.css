@@ -9,7 +9,11 @@
 
   @nest .js & {
     &::before {
-      @apply --fillParent;
+      position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
       z-index: 2;
       content: '';
       background-color: var(--darkBrown);
@@ -23,7 +27,11 @@
   }
 }
 .section-top__background {
-  @apply --fillParent;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
   z-index: 0;
   background: url(images/alchemist-small.jpg) center no-repeat;
   background-size: cover;
@@ -36,7 +44,11 @@
   }
 }
 .section-top__flame {
-  @apply --fillParent;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
   z-index: 2;
   user-select: none;
   background: url(images/flame.png) center no-repeat;
@@ -45,7 +57,11 @@
   transition: opacity .2s;
 }
 .section-top__canvas {
-  @apply --fillParent;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
 
   &.smoke {
     z-index: 1;
