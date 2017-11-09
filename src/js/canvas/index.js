@@ -79,9 +79,11 @@ export default function initCanvas() {
     if (isAnimationPlaying) {
       stopAnimation();
       descToggleAnimation.textContent = 'Resume animation';
+      buttonToggleAnimation.setAttribute('aria-pressed', true);
     } else {
       startAnimation();
       descToggleAnimation.textContent = 'Pause animation';
+      buttonToggleAnimation.setAttribute('aria-pressed', false);
     }
   });
 };

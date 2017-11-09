@@ -9,12 +9,12 @@
 
   @nest .js & {
     &::before {
+      z-index: 3;
       position: absolute;
       left: 0;
       bottom: 0;
       right: 0;
       top: 0;
-      z-index: 2;
       content: '';
       background-color: var(--darkBrown);
       transition: opacity 1s;
@@ -27,12 +27,12 @@
   }
 }
 .section-top__background {
+  z-index: 0;
   position: absolute;
   left: 0;
   bottom: 0;
   right: 0;
   top: 0;
-  z-index: 0;
   background: url(images/alchemist-small.jpg) center no-repeat;
   background-size: cover;
 
@@ -44,12 +44,12 @@
   }
 }
 .section-top__flame {
+  z-index: 2;
   position: absolute;
   left: 0;
   bottom: 0;
   right: 0;
   top: 0;
-  z-index: 2;
   user-select: none;
   background: url(images/flame.png) center no-repeat;
   background-size: cover;
@@ -67,7 +67,7 @@
     z-index: 1;
   }
   &.lines {
-    z-index: 3;
+    z-index: 5;
   }
 }
 .canvas-controls {
@@ -137,7 +137,7 @@
   right: 5px;
   margin: 0;
   padding: .5em .8em;
-  width: 160px;
+  width: 150px;
   border-radius: 5px;
   background: var(--lightGray);
   font-size: 16px;
@@ -205,8 +205,41 @@
       transform: translateX(-3px) rotate(45deg) scaleX(4);
     }
   }
+}
 
-  & .canvas-controls__description {
-    width: 150px;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.background-loader {
+  z-index: 9;
+  position: absolute;
+  top: 1.5em;
+  right: 1em;
+  transition: opacity .5s, transform .5s;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 1em;
+    height: 2px;
+    background-color: var(--lightGray);
+    animation: spin 1s linear infinite;
+  }
+  &::after {
+    animation-delay: -0.25s;
+  }
+
+  @nest .is-loaded & {
+    opacity: 0;
+    transform: translate(-10px, 10px);
   }
 }
