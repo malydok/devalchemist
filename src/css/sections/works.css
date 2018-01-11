@@ -2,8 +2,7 @@
   border-top: 5px solid var(--red);
 }
 .works__intro {
-  background-color: color(var(--lightGray) shade(10%));
-  padding: 1em;
+  padding-top: .5em;
 }
 .works__item {
   margin: 1.5em 0;
