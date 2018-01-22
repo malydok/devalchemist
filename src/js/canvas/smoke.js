@@ -2,11 +2,7 @@ import { getRandom, drawImageProp } from '../helpers';
 
 class Particle {
   constructor(settings) {
-    for (var prop in settings) {
-      if (settings.hasOwnProperty(prop)) {
-        this[prop] = settings[prop];
-      }
-    }
+    Object.assign(this, settings);
     this.tickLast = 0;
   }
 
@@ -34,10 +30,8 @@ class Particle {
 export default class CanvasSmoke {
   constructor(canvas) {
     this.canvas = canvas;
-
     this.ctx = canvas.getContext('2d');
     this.particles = [];
-    
     this.preloadResources();
   }
 
