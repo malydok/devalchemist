@@ -1,4 +1,3 @@
-import CanvasLines from './lines';
 import CanvasSmoke from './smoke';
 import Flame from './flame';
 import BackgroundImage from './background';
@@ -21,7 +20,6 @@ export default function initCanvas() {
 
   updateCanvasSize();
   Flame();
-  const lines = CanvasLines(lineCanvas);
   const smoke = new CanvasSmoke(smokeCanvas);
 
   const preloadModules = Promise.all([
@@ -34,8 +32,6 @@ export default function initCanvas() {
     tick++;
     tick %= 1000;
     smoke.render(tick);
-    lines.render();
-    lines.animateIn();
     if (isAnimationPlaying) {
       window.requestAnimationFrame(animateCanvas);
     }
@@ -61,7 +57,6 @@ export default function initCanvas() {
       startAnimation();
     }
     updateCanvasSize();
-    lines.updateRadiuses();
     smoke.calculateOrigin();
   };
   onWindowResize();

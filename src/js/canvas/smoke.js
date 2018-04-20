@@ -10,7 +10,7 @@ class Particle {
     this.x += this.xVelocity;
     this.y += this.yVelocity;
     this.yVelocity *= 0.998;
-    this.alpha = Math.max(this.alpha - 0.001, 0);
+    this.alpha = Math.max(this.alpha - 0.002, 0);
     this.scale += 0.004;
     this.rotationVelocity *= 0.999;
     this.rotation += this.rotationVelocity;
@@ -50,9 +50,8 @@ export default class CanvasSmoke {
     this.maskPromise = new Promise((resolve, reject) => {
       this.mask = new Image();
       this.mask.onload = () => {
-        this.calculateOrigin(() => {
-          resolve('Smoke mask loaded');
-        });
+        this.calculateOrigin();
+        resolve('Smoke mask loaded');
       };
       this.mask.onerror = () => {
         reject('Smoke mask loading fail');
@@ -65,7 +64,7 @@ export default class CanvasSmoke {
     return Promise.all([this.smokePromise, this.maskPromise]);
   }
 
-  calculateOrigin(callback) {
+  calculateOrigin() {
     drawImageProp(this.ctx, this.mask);
 
     const halfCanvasWidth = Math.floor(this.canvas.width/2);
@@ -77,8 +76,6 @@ export default class CanvasSmoke {
       if (data[i] === 255 && data[i+1] === 0 && data[i+2] === 0) {
         this.originX = halfCanvasWidth + (i/4) % halfCanvasWidth;
         this.originY = halfCanvasHeight + 40 + Math.floor((i/4) / halfCanvasWidth);
-
-        callback();
         break;
       }
     }
