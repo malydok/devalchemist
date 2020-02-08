@@ -35,13 +35,13 @@
   }
 }
 .site-nav {
-  margin-top: .5em;
+  margin-top: 0.5em;
 
   & li {
     display: inline-block;
-    margin-top: .3em;
-    margin-right: .7em;
-    animation: fadeIn .8s 1s backwards;
+    margin-top: 0.3em;
+    margin-right: 0.7em;
+    animation: fadeIn 0.8s 1s backwards;
 
     &:nth-child(1) {
       animation-delay: 1.2s;
@@ -51,15 +51,12 @@
     }
   }
   & a {
-    & span {
-      display: inline-block;
-      transition: transform .12s;
-    }
+    transition: color 0.2s;
+    font-style: italic;
+
     &:hover,
     &:focus {
-      & span {
-        transform: skew(-20deg, -20deg);
-      }
+      color: var(--lightGray);
     }
   }
 }
@@ -73,14 +70,14 @@
 }
 .site-name__image {
   float: left;
-  margin-right: .7em;
-  margin-bottom: .5em;
+  margin-right: 0.7em;
+  margin-bottom: 0.5em;
   animation: fadeIn 1s backwards;
 }
 .site-name__horns {
   fill: var(--red);
   transform-origin: center;
-  animation: fadeInScale 1s .3s backwards;
+  animation: fadeInScale 1s 0.3s backwards;
 }
 .site-name__letter {
   fill: var(--lightGray);
@@ -91,17 +88,17 @@
 }
 .site-name__text {
   display: inline-block;
-  margin-top: .32em;
-  margin-bottom: .05em;
-  animation: fadeIn 1s .3s backwards;
+  margin-top: 0.32em;
+  margin-bottom: 0.05em;
+  animation: fadeIn 1s 0.3s backwards;
 }
 .site-description {
   font-size: 18px;
   text-transform: uppercase;
   letter-spacing: 0.4em;
   color: color(var(--lightGray) a(80%));
-  transition: opacity .2s;
-  animation: fadeIn 1s .4s backwards;
+  transition: opacity 0.2s;
+  animation: fadeIn 1s 0.4s backwards;
 
   @media (--medium) {
     font-size: 22px;
