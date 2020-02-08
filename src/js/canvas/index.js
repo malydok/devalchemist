@@ -5,11 +5,11 @@ import BackgroundImage from './background';
 export default function initCanvas() {
   let isAnimationPlaying = true;
   const lineCanvas = document.getElementById('line-canvas');
-  const lineCtx = lineCanvas.getContext('2d');
   const smokeCanvas = document.getElementById('smoke-canvas');
-  const smokeCtx = smokeCanvas.getContext('2d');
   const buttonToggleAnimation = document.querySelector('.toggle-animation');
-  const descToggleAnimation = buttonToggleAnimation.querySelector('.canvas-controls__description');
+  const descToggleAnimation = buttonToggleAnimation.querySelector(
+    '.canvas-controls__description'
+  );
 
   const updateCanvasSize = () => {
     lineCanvas.width = document.body.clientWidth;
@@ -22,10 +22,7 @@ export default function initCanvas() {
   Flame();
   const smoke = new CanvasSmoke(smokeCanvas);
 
-  const preloadModules = Promise.all([
-    BackgroundImage(),
-    smoke.ready,
-  ]);
+  const preloadModules = Promise.all([BackgroundImage(), smoke.ready]);
 
   let tick = 0;
   const animateCanvas = () => {
@@ -61,7 +58,7 @@ export default function initCanvas() {
   };
   onWindowResize();
   window.addEventListener('resize', onWindowResize);
-  
+
   if (window.innerWidth >= 768) {
     preloadModules.then(startAnimation).catch(error => {
       console.log('Preloading failed!', error);
@@ -81,4 +78,4 @@ export default function initCanvas() {
       buttonToggleAnimation.setAttribute('aria-pressed', false);
     }
   });
-};
+}

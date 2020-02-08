@@ -1,44 +1,49 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-
-const extractSass = new ExtractTextPlugin({
-  filename: 'styles.css'
-});
+const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: './src/js/index.js',
   output: {
-    filename: 'scripts.js'
+    filename: 'scripts.js',
+    path: path.resolve(__dirname, ''),
   },
   devServer: {
-    contentBase: './'
+    contentBase: './',
   },
-  module: {
-    rules: [{
-      test: /\.js$/,
-      exclude: /(node_modules|bower_components)/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['es2015']
-        }
-      }
-    }],
-    rules: [{
-      test: /\.css$/,
-      use: extractSass.extract({
-        use: [
-          {
-            loader: 'css-loader',
-            options: { url: false, importLoaders: 1 }
-          }, 
-          'postcss-loader'
-        ]
-      })
-    }]
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
   plugins: [
-    new UglifyJSPlugin(),
-    extractSass
-  ]
+    new MiniCssExtractPlugin({
+      filename: 'styles.css',
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+    ],
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { url: false, importLoaders: 1 } },
+          'postcss-loader',
+        ],
+      },
+    ],
+  },
 };
